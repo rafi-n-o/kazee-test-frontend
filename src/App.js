@@ -1,24 +1,65 @@
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from "react-redux";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AdministratorApp from "./layouts/AdministratorApp";
+import GlobalApp from "./layouts/GlobalApp";
+import PublicApp from "./layouts/PublicApp";
+import AdministratorDashboard from "./pages/Administrator/Dashboard";
+import AdministratorDepartment from "./pages/Administrator/Department";
+import AdministratorDepartmentCreate from "./pages/Administrator/Department/Create";
+import AdministratorDepartmentUpdate from "./pages/Administrator/Department/Update";
+import AdministratorEmployee from "./pages/Administrator/Employee";
+import AdministratorEmployeeCreate from "./pages/Administrator/Employee/Create";
+import AdministratorEmployeeDetail from "./pages/Administrator/Employee/Detail";
+import AdministratorJob from "./pages/Administrator/Job";
+import AdministratorJobCreate from "./pages/Administrator/Job/Create";
+import AdministratorJobUpdate from "./pages/Administrator/Job/Update";
+import Home from "./pages/Home";
+import Login from "./pages/Public/Login";
+import store from "./redux/store";
+import Dashboard from "./pages/Public/Dashboard";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="" element={<GlobalApp />}>
+            <Route path="/" element={<Home />} />
+          </Route>
+          <Route path="" element={<PublicApp />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Route>
+          <Route path="" element={<AdministratorApp />}>
+            <Route
+              path="/administrator/dashboard"
+              element={<AdministratorDashboard />}
+            />
+            <Route path="/administrator/departments">
+              <Route index element={<AdministratorDepartment />} />
+              <Route
+                path="create"
+                element={<AdministratorDepartmentCreate />}
+              />
+              <Route
+                path=":id/update"
+                element={<AdministratorDepartmentUpdate />}
+              />
+            </Route>
+            <Route path="/administrator/jobs">
+              <Route index element={<AdministratorJob />} />
+              <Route path="create" element={<AdministratorJobCreate />} />
+              <Route path=":id/update" element={<AdministratorJobUpdate />} />
+            </Route>
+            <Route path="/administrator/employees">
+              <Route index element={<AdministratorEmployee />} />
+              <Route path="create" element={<AdministratorEmployeeCreate />} />
+              <Route path=":id" element={<AdministratorEmployeeDetail />} />
+            </Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   );
 }
 
