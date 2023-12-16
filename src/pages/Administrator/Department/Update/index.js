@@ -46,26 +46,30 @@ const Update = () => {
   return (
     <>
       <Gap height={10} />
-      <form onSubmit={formDepartment}>
-        <div className="row">
-          <div className="input-field col s12">
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <label className="active">Nama</label>
-            <span className="helper-text red-text">
-              {validation?.map((value, index) =>
-                value.field === "name" ? value.message : null
-              )}
-            </span>
-          </div>
-          <div className="input-field col s12">
-            <button className="btn">Simpan</button>
-          </div>
+      <div className="card">
+        <div className="card-content">
+          <form onSubmit={formDepartment}>
+            <div className="row">
+              <div className="input-field col s12">
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <label className="active">Nama</label>
+                <span className="helper-text red-text">
+                  {validation?.map((value, index) =>
+                    value.field === "name" ? value.message : null
+                  )}
+                </span>
+              </div>
+              <div className="input-field col s12">
+                <button className="btn">Simpan</button>
+              </div>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
     </>
   );
 };

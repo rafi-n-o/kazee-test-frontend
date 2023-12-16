@@ -32,26 +32,30 @@ const Create = () => {
   return (
     <>
       <Gap height={10} />
-      <form onSubmit={formJob}>
-        <div className="row">
-          <div className="input-field col s12">
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <label>Nama</label>
-            <span className="helper-text red-text">
-              {validation?.map((value, index) =>
-                value.field === "name" ? value.message : null
-              )}
-            </span>
-          </div>
-          <div className="input-field col s12">
-            <button className="btn">Simpan</button>
-          </div>
+      <div className="card">
+        <div className="card-content">
+          <form onSubmit={formJob}>
+            <div className="row">
+              <div className="input-field col s12">
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <label>Nama</label>
+                <span className="helper-text red-text">
+                  {validation?.map((value, index) =>
+                    value.field === "name" ? value.message : null
+                  )}
+                </span>
+              </div>
+              <div className="input-field col s12">
+                <button className="btn">Simpan</button>
+              </div>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
     </>
   );
 };

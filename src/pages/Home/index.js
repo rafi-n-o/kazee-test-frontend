@@ -8,7 +8,7 @@ const Home = () => {
       <Link to="/login">
         <div className="card">
           <div className="card-content" style={{ fontSize: 20 }}>
-            Public
+            Karyawan
           </div>
         </div>
       </Link>

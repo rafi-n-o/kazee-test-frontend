@@ -12,18 +12,20 @@ const storeEmployee = (form) => {
   });
 };
 
-const getEmployees = () => (dispatch) => {
-  Api.get("/employees")
-    .then((res) => {
-      dispatch({
-        type: "GET_EMPLOYEES",
-        payload: res.data.data,
+const getEmployees =
+  (departmentId = "", jobId = "") =>
+  (dispatch) => {
+    Api.get(`/employees?departmentId=${departmentId}&jobId=${jobId}`)
+      .then((res) => {
+        dispatch({
+          type: "GET_EMPLOYEES",
+          payload: res.data.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response.data);
       });
-    })
-    .catch((err) => {
-      console.log(err.response.data);
-    });
-};
+  };
 
 const getEmployee = (id) => (dispatch) => {
   Api.get(`/employees/${id}`)
@@ -50,4 +52,47 @@ const storeLogin = (form) => {
   });
 };
 
-export { getEmployees, storeEmployee, getEmployee, storeLogin };
+const getToken = () => {
+  return localStorage.getItem("token");
+};
+
+const getProfile = () => {
+  return new Promise((resolve, reject) => {
+    Api.get("/employees/profile", {
+      headers: {
+        Authorization: getToken(),
+      },
+    })
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch((err) => {
+        reject(err.response.data);
+      });
+  });
+};
+
+const updateProfile = (form) => {
+  return new Promise((resolve, reject) => {
+    Api.put("/employees/profile", form, {
+      headers: {
+        Authorization: getToken(),
+      },
+    })
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch((err) => {
+        reject(err.response.data);
+      });
+  });
+};
+
+export {
+  getEmployees,
+  storeEmployee,
+  getEmployee,
+  storeLogin,
+  getProfile,
+  updateProfile,
+};

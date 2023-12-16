@@ -2,7 +2,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AdministratorApp from "./layouts/AdministratorApp";
 import GlobalApp from "./layouts/GlobalApp";
-import PublicApp from "./layouts/PublicApp";
+import MainApp from "./layouts/MainApp";
 import AdministratorDashboard from "./pages/Administrator/Dashboard";
 import AdministratorDepartment from "./pages/Administrator/Department";
 import AdministratorDepartmentCreate from "./pages/Administrator/Department/Create";
@@ -14,9 +14,10 @@ import AdministratorJob from "./pages/Administrator/Job";
 import AdministratorJobCreate from "./pages/Administrator/Job/Create";
 import AdministratorJobUpdate from "./pages/Administrator/Job/Update";
 import Home from "./pages/Home";
-import Login from "./pages/Public/Login";
+import Login from "./pages/Main/Login";
 import store from "./redux/store";
-import Dashboard from "./pages/Public/Dashboard";
+import Dashboard from "./pages/Main/Dashboard";
+import Profile from "./pages/Main/Profile";
 
 function App() {
   return (
@@ -25,10 +26,11 @@ function App() {
         <Routes>
           <Route path="" element={<GlobalApp />}>
             <Route path="/" element={<Home />} />
-          </Route>
-          <Route path="" element={<PublicApp />}>
             <Route path="/login" element={<Login />} />
+          </Route>
+          <Route path="" element={<MainApp />}>
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/profile" element={<Profile />} />
           </Route>
           <Route path="" element={<AdministratorApp />}>
             <Route

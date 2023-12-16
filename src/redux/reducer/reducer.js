@@ -1,7 +1,8 @@
 import { combineReducers } from "redux";
 import { departments, department } from "./department";
 import { jobs, job } from "./job";
-import { employees, employee } from "./employee";
+import { employees, employee, profile } from "./employee";
+import { dashboard } from "./dashboard";
 
 const reducer = combineReducers({
   departments,
@@ -10,6 +11,8 @@ const reducer = combineReducers({
   job,
   employees,
   employee,
+  profile,
+  dashboard,
 });
 
 export default reducer;

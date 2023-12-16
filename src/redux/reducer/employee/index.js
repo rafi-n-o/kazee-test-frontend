@@ -3,7 +3,11 @@ const stateEmployees = {
 };
 
 const stateEmployee = {
-  employee: [],
+  employee: {},
+};
+
+const stateProfile = {
+  profile: {},
 };
 
 const employees = (state = stateEmployees, action) => {
@@ -28,4 +32,15 @@ const employee = (state = stateEmployee, action) => {
   return state;
 };
 
-export { employees, employee };
+const profile = (state = stateProfile, action) => {
+  if (action.type === "GET_PROFILE") {
+    return {
+      ...state,
+      profile: action.payload,
+    };
+  }
+
+  return state;
+};
+
+export { employees, employee, profile };

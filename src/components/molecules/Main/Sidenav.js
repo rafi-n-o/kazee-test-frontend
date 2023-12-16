@@ -16,19 +16,27 @@ const Sidenav = () => {
         <li>
           <Link to="/dashboard">Dashboard</Link>
         </li>
+        <li>
+          <Link to="/profile">My Profile</Link>
+        </li>
       </ul>
 
-      <nav>
-        <div class="nav-wrapper container">
-          <a
-            href="#"
-            data-target="slide-out"
-            class="sidenav-trigger show-on-medium-and-up"
-          >
-            <i class="material-icons">menu</i>
-          </a>
-        </div>
-      </nav>
+      <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper container">
+            <a
+              href="#"
+              data-target="slide-out"
+              class="sidenav-trigger show-on-medium-and-up"
+            >
+              <i class="material-icons">menu</i>
+            </a>
+            <Link to="/" className="right">
+              <i className="material-icons">home</i>
+            </Link>
+          </div>
+        </nav>
+      </div>
     </>
   );
 };
